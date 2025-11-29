@@ -5,12 +5,14 @@ import { BooksModule } from './books/books.module';
 import { MongooseModule } from '@nestjs/mongoose'; 
 
 import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './users/user.module';
 
 @Module({
    imports:[
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGO_CONNECTION!),
     BooksModule,
+    UsersModule,
   ], 
   controllers: [AppController],
   providers: [AppService],
