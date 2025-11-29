@@ -3,12 +3,16 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { hash, compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
-import { jwtConstants } from './constants';
+import { jwtConstants } from '../guards/constants';
 import { User } from './shcemas/user.schema'
 
 @Injectable()
 export class UsersService {
   constructor(@InjectModel('User') private userModel: Model<User>) {}
+
+  async findOneByEmail(email: string): Promise<User | null> {
+    return this.userModel.findOne({ email }).exec();
+  }
 
   async signup(userData: { email: string; password: string; firstName: string; lastName: string }) {
     try {

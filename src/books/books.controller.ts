@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, UsePipes, ValidationPipe} from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, UsePipes, ValidationPipe, UseGuards} from '@nestjs/common';
+import { JwtGuard } from 'src/guards/auth.guard';
 import { BooksService } from './books.service';
 import { Book } from 'src/books/schemas/book.schema';
 import { CreateBookDto } from './valid/dtos/create-book.dto';
@@ -7,6 +8,7 @@ import { UpdateBookDto } from './valid/dtos/update-book.dto';
 
 
 @Controller('books')
+@UseGuards(JwtGuard)
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}
 

@@ -17,7 +17,7 @@ import { HttpExceptionFilter } from './valid/filters/http-exception.filter';
     BooksService,
     { provide: APP_INTERCEPTOR, useClass: ResponseInterceptor },
     { provide: APP_PIPE, useClass: ValidationPipe },
-    { provide: APP_FILTER, useClass: HttpExceptionFilter }
+    { provide: APP_FILTER, useClass: HttpExceptionFilter },
   ],
 })
 export class BooksModule {}
